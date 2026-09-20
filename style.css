@@ -1,77 +1,153 @@
+:root {
+  --bg-deep: #07111f;
+  --bg-mid: #0d1b2a;
+  --panel: rgba(12, 20, 32, 0.82);
+  --panel-strong: rgba(15, 23, 36, 0.96);
+  --border: rgba(148, 163, 184, 0.18);
+  --text: #e5eefb;
+  --muted: #93a4bb;
+  --success: #5bd39b;
+  --danger: #ff6b6b;
+  --neutral: #7cc7ff;
+  --shadow: rgba(3, 7, 18, 0.55);
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Ancizar";
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(79, 124, 255, 0.28), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.12), transparent 30%),
+    linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-mid) 55%, #0b1320 100%);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
 .container {
-  width: 80%;
-  margin: 10px auto;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  width: min(92vw, 760px);
+  padding: 24px 0;
 }
-.container h1 {
+
+.timer-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(16, 24, 38, 0.9), rgba(11, 18, 29, 0.94));
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 32px 28px 24px;
+  box-shadow:
+    0 30px 80px rgba(3, 7, 18, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+.timer-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px 24px auto;
+  height: 130px;
+  border-radius: 24px;
+  background: radial-gradient(circle at center, rgba(124, 166, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  font-size: 40px;
-  color: purple;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-size: 0.7rem;
+  color: rgba(184, 205, 234, 0.7);
+  margin-bottom: 10px;
 }
+
+h1 {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.96rem;
+  margin-bottom: 28px;
+}
+
 .inputField {
-  display: flex;
-  margin-top: 20px;
-  justify-content: center;
-  gap: 15px;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
 }
-.minutesDiv {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
+
+.time-unit {
+  background: linear-gradient(180deg, rgba(20, 31, 46, 0.94), rgba(10, 17, 28, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 22px;
+  padding: 16px 14px 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.secondDiv {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
+
+.time-unit:focus-within {
+  border-color: rgba(124, 199, 255, 0.55);
+  box-shadow: 0 0 0 4px rgba(124, 199, 255, 0.12);
+  transform: translateY(-1px);
 }
-.milisecDiv {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
+
+.time-unit label {
+  display: block;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(186, 202, 221, 0.82);
+  margin-bottom: 10px;
 }
-.minutesDiv input {
+
+.time-unit input {
   width: 100%;
-  border-radius: 50%;
-  height: 100%;
-  background-color: rgb(84, 255, 84);
-  border: solid 1px rgb(84, 255, 84);
+  background: transparent;
+  border: none;
   outline: none;
   text-align: center;
-  font-size: 24px;
-  color: rgb(232, 7, 7);
-  font-weight: 700;
+  color: var(--text);
+  font-size: clamp(2.1rem, 7vw, 4rem);
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  letter-spacing: -0.06em;
 }
-.secondDiv input {
-  outline: none;
-  width: 100%;
-  border-radius: 50%;
-  height: 100%;
-  background-color: rgb(243, 243, 32);
-  border: solid 1px rgb(255, 255, 109);
-  text-align: center;
-  font-size: 24px;
-  color: rgb(19, 58, 81);
-  font-weight: 700;
+
+.time-unit input::placeholder {
+  color: rgba(148, 163, 184, 0.7);
 }
-.milisecDiv input {
-  outline: none;
-  width: 100%;
-  border-radius: 50%;
-  height: 100%;
-  border: solid 1px rgb(241, 96, 96);
-  background-color: rgb(241, 96, 96);
-  text-align: center;
-  font-size: 24px;
-  color: whitesmoke;
-  font-weight: 700;
+
+.time-unit input:disabled {
+  color: rgba(203, 217, 236, 0.72);
+  cursor: not-allowed;
 }
 
 .no-spinner::-webkit-outer-spin-button,
@@ -79,103 +155,128 @@
   -webkit-appearance: none;
   margin: 0;
 }
-.minutesDiv input::placeholder {
-  font-weight: 700;
-  color: whitesmoke;
+
+.no-spinner {
+  -moz-appearance: textfield;
 }
-.secondDiv input::placeholder {
-  font-weight: 700;
-  color: whitesmoke;
-}
-.milisecDiv input::placeholder {
-  color: whitesmoke;
-  font-weight: 700;
-}
+
 .buttons {
-  width: 80%;
-  margin: 20px auto;
-  text-align: center;
-  padding-bottom: 60px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 10px;
 }
+
+.Start,
+.Stop,
+.Reset {
+  border: none;
+  border-radius: 14px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-width: 128px;
+  padding: 0.95rem 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.22);
+}
+
 .Start {
-  padding: 10px;
-  width: 70px;
-  border: none;
-  background-color: rgb(31, 96, 31);
-  color: whitesmoke;
-  font-size: 20px;
-  border-radius: 7px;
-  margin: 6px;
-  transition: all ease 0.6s;
-  cursor: pointer;
-  font-weight: 600;
-  width: 100px;
+  background: linear-gradient(135deg, #31c48d, #1f9d71);
+  color: #f5fff9;
 }
+
 .Stop {
-  padding: 10px;
-  cursor: pointer;
-  width: 70px;
-  border: none;
-  background-color: rgb(214, 60, 60);
-  color: whitesmoke;
-  font-size: 20px;
-  border-radius: 7px;
-  margin: 6px;
-  transition: all ease 0.6s;
-  font-weight: 600;
-  width: 100px;
+  background: linear-gradient(135deg, #f86a6a, #e5484d);
+  color: #fff7f7;
 }
 
 .Reset {
-  cursor: pointer;
-  padding: 10px;
-  width: 70px;
-  border: none;
-  background-color: rgb(2, 55, 83);
-  color: whitesmoke;
-  font-size: 20px;
-  border-radius: 7px;
-  margin: 6px;
-  transition: all ease 0.6s;
-  font-weight: 600;
-  width: 100px;
-}
-.Start:hover {
-  background-color: greenyellow;
-  color: rgb(35, 35, 87);
-}
-.Stop:hover {
-  background-color: rgb(196, 246, 16);
-  color: mediumblue;
-}
-.Reset:hover {
-  background-color: rgba(4, 236, 252, 0.824);
-  color: rgb(207, 24, 110);
+  background: linear-gradient(135deg, #5ca9ff, #3a7de0);
+  color: #eff7ff;
 }
 
-@media screen and (min-width: 320px) and (max-width: 600px) {
-  .minutesDiv {
-    border-radius: 50%;
-    width: 80px;
-    height: 100px;
+.Start:hover:not(:disabled),
+.Stop:hover,
+.Reset:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.Start:active:not(:disabled),
+.Stop:active,
+.Reset:active {
+  transform: translateY(0);
+}
+
+.Start:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .timer-card {
+    padding: 28px 20px 20px;
   }
-  .secondDiv {
-    border-radius: 50%;
-    width: 80px;
-    height: 100px;
+
+  .inputField {
+    gap: 12px;
+    margin-bottom: 22px;
   }
-  .milisecDiv {
-    border-radius: 50%;
-    width: 80px;
-    height: 100px;
+
+  .time-unit {
+    padding: 14px 12px 12px;
   }
-  .minutesDiv input {
-    font-size: 16px;
+
+  .time-unit label {
+    letter-spacing: 0.12em;
   }
-  .milisecDiv input {
-    font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(92vw, 420px);
   }
-  .secondDiv input {
-    font-size: 16px;
+
+  .timer-card {
+    border-radius: 22px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.18em;
+  }
+
+  .subtitle {
+    margin-bottom: 20px;
+    font-size: 0.85rem;
+  }
+
+  .inputField {
+    gap: 10px;
+  }
+
+  .time-unit label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .Start,
+  .Stop,
+  .Reset {
+    min-width: 92px;
+    padding: 0.8rem 1rem;
+    font-size: 0.92rem;
   }
 }

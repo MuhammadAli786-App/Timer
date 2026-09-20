@@ -14,40 +14,49 @@
   </head>
   <body>
     <div class="container">
-      <h1>Timer</h1>
-      <div class="inputField">
-        <div class="minutesDiv">
-          <input
-            type="number"
-            class="no-spinner"
-            placeholder="Enter Minutes"
-            id="minInput"
-          />
+      <div class="timer-card">
+        <p class="eyebrow">productivity</p>
+        <h1>Timer</h1>
+        <p class="subtitle">Set your countdown and start</p>
+
+        <div class="inputField" aria-label="Countdown timer inputs">
+          <div class="time-unit minutesDiv">
+            <label for="minInput">Minutes</label>
+            <input
+              type="number"
+              class="no-spinner"
+              placeholder="00"
+              id="minInput"
+            />
+          </div>
+          <div class="time-unit secondDiv">
+            <label for="secInput">Seconds</label>
+            <input
+              type="number"
+              class="no-spinner"
+              placeholder="00"
+              id="secInput"
+            />
+          </div>
+          <div class="time-unit milisecDiv">
+            <label for="miliSecInput">Milliseconds</label>
+            <input
+              type="number"
+              class="no-spinner"
+              placeholder="00"
+              disabled
+              id="miliSecInput"
+            />
+          </div>
         </div>
-        <div class="secondDiv">
-          <input
-            type="number"
-            class="no-spinner"
-            placeholder="Enter Seconds"
-            id="secInput"
-          />
+
+        <div class="buttons">
+          <button class="Start" id="startBtn" onclick="StartTimer()" type="button">
+            Start
+          </button>
+          <button class="Stop" onclick="StopTimer()" type="button">Stop</button>
+          <button class="Reset" onclick="ResetTimer()" type="button">Reset</button>
         </div>
-        <div class="milisecDiv">
-          <input
-            type="number"
-            class="no-spinner"
-            placeholder="Enter MiliSec"
-            disabled
-            id="miliSecInput"
-          />
-        </div>
-      </div>
-      <div class="buttons">
-        <button class="Start" id="startBtn" onclick="StartTimer()">
-          Start
-        </button>
-        <button class="Stop" onclick="StopTimer()">Stop</button>
-        <button class="Reset" onclick="ResetTimer()">Reset</button>
       </div>
     </div>
   </body>
